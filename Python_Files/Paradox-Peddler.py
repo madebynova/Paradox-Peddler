@@ -16,5 +16,7 @@ print(f"Era: Dinosaur Age\nMoney: {money}")
 print() # Adds a blank line for better readability
 print("Items available for purchase:")
 print() # Adds a blank line for better readability
-for item, price in dictionary.items():
+def get_price(pair):
+    return pair[1]
+for item, price in sorted(dictionary.items(), key=get_price):
     print(f"{item}: {price} coins")
