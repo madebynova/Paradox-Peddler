@@ -2,6 +2,7 @@ import os
 # Variables
 money = 100 # Starting money for the player
 
+# Defining a dictionary of items available for purchase in the Dinosaur Age, along with their prices
 dictionary  = {
         "Amber with insects": 10, # Cheap items due to abundance
         "Giant egg": 15,
@@ -13,6 +14,7 @@ dictionary  = {
         "Metal tools" : 130,
 }
 
+# Game introductions
 print("Welcome to the Paradox Peddler!") # Welcomes the player to the game
 input("\nPress Enter to start your adventure in the Dinosaur Age...") # Prompts the player to start the game
 os.system('cls' if os.name == 'nt' else 'clear') # Clears the console for better readability
@@ -29,9 +31,12 @@ while True:
         for number, (item, price) in enumerate(sorted_items, start=1):
             print(f"{number}. {item}: {price} coins") # Prints the items and their prices in ascending order
         try:
-            choice = int(input("\nWhat would you like to buy? (Enter the item number): ")) # Inputs the item the player wants to buy
+            choice = int(input("\nWhat would you like to buy? (Enter the item number, or 0 to exit): ")) # Inputs the item the player wants to buy and converts it to an integer and exits the game if the player enters 0
+            if choice == 0: # Checks if the player wants to exit the game
+                print("\nThank you for visiting the Paradox Peddler! Goodbye!") # Thanks the player for visiting the store and exits the game
+                break # Exits the game loop
         except ValueError:
-                choice = 0
+                choice = -1
         os.system('cls' if os.name == 'nt' else 'clear') # Clears the console for better readability
         if 1 <= choice <= len(sorted_items):
                 item, price = sorted_items[choice - 1]
