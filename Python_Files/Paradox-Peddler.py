@@ -21,6 +21,10 @@ os.system('cls' if os.name == 'nt' else 'clear') # Clears the console for better
 # Main game loop
 while True:
 # Prints the era and the amount of money the player has
+        if money < min(dictionary.values()): # Checks if the player has enough money to buy any item
+               print("You don't have enough money to buy any items. Game over!") # Informs the player that they don't have enough money to buy any items and exits the game
+               input("\nPress Enter to exit the game...") # Prompts the player to exit the game
+               break # Exits the game loop
         print(f"Era: Dinosaur Age\nMoney: {money}") 
         print() # Adds a blank line for better readability
         print("Items available for purchase:")
