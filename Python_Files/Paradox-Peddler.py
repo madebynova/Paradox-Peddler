@@ -1,4 +1,6 @@
-money = 100
+import os
+# Variables
+money = 100 # Starting money for the player
 
 dictionary  = {
         "Amber with insects": 10, # Cheap items due to abundance
@@ -10,6 +12,11 @@ dictionary  = {
         "Flashlight" : 100,
         "Metal tools" : 130,
 }
+
+print("Welcome to the Paradox Peddler!") # Welcomes the player to the game
+input("\nPress Enter to start your adventure in the Dinosaur Age...") # Prompts the player to start the game
+os.system('cls' if os.name == 'nt' else 'clear') # Clears the console for better readability
+# Main game loop
 while True:
 # Prints the era and the amount of money the player has
         print(f"Era: Dinosaur Age\nMoney: {money}") 
@@ -24,7 +31,8 @@ while True:
         try:
             choice = int(input("\nWhat would you like to buy? (Enter the item number): ")) # Inputs the item the player wants to buy
         except ValueError:
-            choice = 0
+                choice = 0
+        os.system('cls' if os.name == 'nt' else 'clear') # Clears the console for better readability
         if 1 <= choice <= len(sorted_items):
                 item, price = sorted_items[choice - 1]
                 if money >= price: # Checks if the player has enough money to buy the item
@@ -35,3 +43,4 @@ while True:
                         print("You don't have enough money to buy that item.") # Informs the player if the item is not available for purchase
         else:
                 print("Invalid choice. Please select a valid item number.") # Informs the player if they entered an invalid item number
+        print() # Adds a blank line for better readability
