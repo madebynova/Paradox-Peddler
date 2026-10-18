@@ -1,6 +1,7 @@
 import os
 # Variables
 money = 100 # Starting money for the player
+inventory = {} # Starting inventory for the player, initially empty
 
 # Defining a dictionary of items available for purchase in the Dinosaur Age, along with their prices
 dictionary  = {
@@ -18,6 +19,7 @@ dictionary  = {
 print("Welcome to the Paradox Peddler!") # Welcomes the player to the game
 input("\nPress Enter to start your adventure in the Dinosaur Age...") # Prompts the player to start the game
 os.system('cls' if os.name == 'nt' else 'clear') # Clears the console for better readability
+
 # Main game loop
 while True:
 # Prints the era and the amount of money the player has
@@ -25,9 +27,11 @@ while True:
                print("You don't have enough money to buy any items. Game over!") # Informs the player that they don't have enough money to buy any items and exits the game
                input("\nPress Enter to exit the game...") # Prompts the player to exit the game
                break # Exits the game loop
-        print(f"Era: Dinosaur Age\nMoney: {money}") 
-        print() # Adds a blank line for better readability
-        print("Items available for purchase:")
+        print(f"Era: Dinosaur Age\nMoney: {money}")
+        print("\nInventory:") # Displays the player's current inventory, or "Empty" if they have no items
+        for name, count in inventory.items():
+                print(f"{name}: {count}") # Prints the name and quantity of each item in the player's inventory
+        print("\nItems available for purchase:")
         print() # Adds a blank line for better readability
         def get_price(pair): # Defines a function to get the price of an item for sorting purposes
                 return pair[1]
@@ -45,6 +49,7 @@ while True:
         if 1 <= choice <= len(sorted_items):
                 item, price = sorted_items[choice - 1]
                 if money >= price: # Checks if the player has enough money to buy the item
+                        inventory[item] = inventory.get(item, 0) + 1  # Adds the item to the player's inventory, or increases the quantity if they already have it
                         money -= price # Deducts the price of the item from the player's money
                         print(f"You have chosen to buy {item} for {price} coins.") # Confirms the player's choice
                         print(f"Remaining money: {money}") # Shows the player how much money they have left
